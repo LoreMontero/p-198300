@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
@@ -11,7 +12,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-[#FFFAFD]">
       <Header />
       <Sidebar />
-      <main className="ml-[298px] p-5">{children}</main>
+      <main className="ml-[298px] p-5 max-md:ml-0">{children}</main>
     </div>
   );
 };

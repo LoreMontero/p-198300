@@ -1,17 +1,22 @@
+
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Header: React.FC = () => {
   return (
     <header className="flex justify-between items-center p-5 border-b-2 border-b-black border-solid max-sm:flex-col max-sm:gap-5">
-      <div className="text-2xl font-bold">GATHERU</div>
+      <Link to="/" className="text-2xl font-bold">GATHERU</Link>
       <div className="flex items-center gap-5 max-sm:flex-wrap max-sm:justify-center">
         <nav>
           <ul className="flex items-center gap-5">
             <li>
-              <button className="text-base">Discover</button>
+              <Link to="/" className="text-base">Discover</Link>
             </li>
             <li>
               <button className="text-base">Following</button>
+            </li>
+            <li>
+              <Link to="/leaderboard" className="text-base">Leaderboard</Link>
             </li>
           </ul>
         </nav>
