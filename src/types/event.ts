@@ -1,3 +1,4 @@
+
 export interface Event {
   id: string;
   title: string;
@@ -8,6 +9,7 @@ export interface Event {
   attendees: number;
   status: "open" | "closed";
   image: string;
+  category?: string;
 }
 
 export interface Category {

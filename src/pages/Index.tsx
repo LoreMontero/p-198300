@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { CategoryFilter } from "@/components/events/CategoryFilter";
@@ -22,7 +23,8 @@ const mockEvents: Event[] = [
     location: "FIU, PG6 116",
     attendees: 79,
     status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=400&h=250",
+    category: "programming",
   },
   {
     id: "2",
@@ -32,8 +34,9 @@ const mockEvents: Event[] = [
     organizer: "Hwah Wei",
     location: "FIU, PG6 116",
     attendees: 79,
-    status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    status: "open",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&h=250",
+    category: "programming",
   },
   {
     id: "3",
@@ -44,7 +47,8 @@ const mockEvents: Event[] = [
     location: "FIU, PG6 116",
     attendees: 79,
     status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=250",
+    category: "programming",
   },
   {
     id: "4",
@@ -54,8 +58,9 @@ const mockEvents: Event[] = [
     organizer: "Beats",
     location: "The Lab Miami",
     attendees: 79,
-    status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    status: "open",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=400&h=250",
+    category: "entertainment",
   },
   {
     id: "5",
@@ -66,7 +71,8 @@ const mockEvents: Event[] = [
     location: "FIU, PG6 116",
     attendees: 79,
     status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=400&h=250",
+    category: "events",
   },
   {
     id: "6",
@@ -76,8 +82,9 @@ const mockEvents: Event[] = [
     organizer: "Starbucks",
     location: "FIU, PG6 116",
     attendees: 79,
-    status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    status: "open",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&h=250",
+    category: "programming",
   },
   {
     id: "7",
@@ -88,7 +95,8 @@ const mockEvents: Event[] = [
     location: "FIU, PG6 116",
     attendees: 79,
     status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&h=250",
+    category: "health",
   },
   {
     id: "8",
@@ -98,8 +106,9 @@ const mockEvents: Event[] = [
     organizer: "P&G",
     location: "FIU, PG6 116",
     attendees: 79,
-    status: "closed",
-    image: "https://placehold.co/170x99/4D9FFD/4D9FFD",
+    status: "open",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=400&h=250",
+    category: "events",
   },
 ];
 
@@ -109,8 +118,12 @@ const Index = () => {
 
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category.id);
-    // In a real application, this would filter based on actual category data
-    setFilteredEvents(mockEvents);
+    
+    if (category.id === "all") {
+      setFilteredEvents(mockEvents);
+    } else {
+      setFilteredEvents(mockEvents.filter(event => event.category === category.id));
+    }
   };
 
   return (
