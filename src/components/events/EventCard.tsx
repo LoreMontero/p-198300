@@ -1,7 +1,8 @@
 
 import React from "react";
 import { Event } from "@/types/event";
-import { MapPin, Calendar, Users } from "lucide-react";
+import { Award, MapPin, Users } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface EventCardProps {
   event: Event;
@@ -9,51 +10,53 @@ interface EventCardProps {
 
 export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
-    <div className="flex flex-col border overflow-hidden shadow-[0_4px_6px_rgba(0,0,0,0.1),2px_2px_0_#000] bg-white rounded-[10px] border-solid border-black transition-transform hover:translate-y-[-4px]">
+    <div className="border overflow-hidden shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] transition-shadow bg-white rounded-[10px] border-solid border-black flex flex-col h-full">
       <div className="relative">
         <img
           src={event.image}
           alt={event.title}
-          className="w-full h-[120px] object-cover border-b-2 border-b-black border-solid"
+          className="w-full h-[99px] object-cover border-b-2 border-b-black"
         />
-        <div className="absolute top-2 left-2 text-black text-[10px] font-medium border bg-[#4D9FFD] px-2 py-1 rounded-[4px] border-solid border-black flex items-center gap-1">
-          <Calendar size={12} />
-          <span>{event.date} - {event.time}</span>
+        <div className="absolute top-2 left-2 text-black text-[10px] bg-[#4D9FFD] px-1.5 py-px rounded-[3px] border-solid border border-black">
+          {event.date} - {event.time}
+        </div>
+        {event.pointsForAttending && (
+          <div className="absolute top-2 right-2 bg-yellow-400 text-black text-[10px] px-1.5 py-px rounded-[3px] border-solid border border-black flex items-center gap-1">
+            <Award className="h-3 w-3" />
+            {event.pointsForAttending} pts
+          </div>
+        )}
+      </div>
+      <div className="p-2.5 flex-grow">
+        <h3 className="text-base font-bold line-clamp-2">{event.title}</h3>
+        <div className="flex items-center gap-1 text-[10px] text-[#8F8F8F] mt-1">
+          <img
+            src={`https://placehold.co/20x20/47ACDF/FFFFFF?text=${event.organizer.substring(0, 2)}`}
+            alt={event.organizer}
+            className="w-4 h-4 rounded-full border border-gray-200"
+          />
+          <span>{event.organizer}</span>
+        </div>
+        <div className="flex items-center gap-1 text-[10px] text-[#8F8F8F] mt-1">
+          <MapPin className="h-3 w-3" />
+          <span>{event.location}</span>
         </div>
       </div>
-      
-      <div className="flex flex-col flex-grow p-3">
-        <h3 className="text-base font-bold mb-2 line-clamp-2">{event.title}</h3>
-        
-        <div className="flex flex-col gap-2 mt-1 mb-3">
-          <div className="flex items-center gap-2 text-[10px] text-[#6E6E6E]">
-            <div className="w-4 h-4 rounded-full bg-[#EFEFEF] flex items-center justify-center overflow-hidden">
-              <img
-                src={`https://placehold.co/16x16/8F8F8F/FFFFFF?text=${event.organizer.charAt(0)}`}
-                alt={event.organizer}
-                className="w-4 h-4 object-cover"
-              />
-            </div>
-            <span className="font-medium">{event.organizer}</span>
-          </div>
-          
-          <div className="flex items-center gap-2 text-[10px] text-[#6E6E6E]">
-            <MapPin size={12} className="text-[#8F8F8F]" />
-            <span>{event.location}</span>
-          </div>
+      <div className="flex justify-between items-center p-2.5 border-t border-t-gray-200">
+        <div className="flex items-center gap-1">
+          <Users className="h-3.5 w-3.5 text-gray-500" />
+          <div className="text-[10px]">{event.attendees} GOING</div>
         </div>
-      </div>
-      
-      <div className="flex justify-between items-center p-3 border-t border-solid border-[#EFEFEF] mt-auto">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center">
-            <Users size={12} className="text-[#8F8F8F] mr-1" />
-            <div className="text-[10px] font-medium">{event.attendees} GOING</div>
-          </div>
-        </div>
-        <div className={`text-[10px] font-bold ${event.status === "open" ? "text-[#47ACDF]" : "text-[#FD4D50]"} uppercase`}>
-          {event.status}
-        </div>
+        <Badge 
+          variant={event.status === "open" ? "default" : "secondary"} 
+          className={`text-[10px] ${
+            event.status === "open" 
+              ? "bg-green-500 hover:bg-green-600" 
+              : "bg-gray-400 hover:bg-gray-500"
+          }`}
+        >
+          {event.status.toUpperCase()}
+        </Badge>
       </div>
     </div>
   );

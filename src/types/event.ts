@@ -10,6 +10,7 @@ export interface Event {
   status: "open" | "closed";
   image: string;
   category?: string;
+  pointsForAttending?: number;
 }
 
 export interface Category {
@@ -24,4 +25,6 @@ export interface User {
   points: number;
   avatar: string;
   rank?: number;
+  eventsAttended?: string[]; // IDs of events the user has attended
 }
+
