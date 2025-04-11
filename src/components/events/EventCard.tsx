@@ -10,12 +10,12 @@ interface EventCardProps {
 
 export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
-    <div className="border overflow-hidden shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] transition-shadow bg-white rounded-[10px] border-solid border-black flex flex-col h-full">
+    <div className="border overflow-hidden shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] transition-all duration-200 bg-white rounded-[10px] border-solid border-black flex flex-col h-full w-[220px] transform hover:-translate-y-1">
       <div className="relative">
         <img
           src={event.image}
           alt={event.title}
-          className="w-full h-[99px] object-cover border-b-2 border-b-black"
+          className="w-full h-[120px] object-cover border-b-2 border-b-black"
         />
         <div className="absolute top-2 left-2 text-black text-[10px] bg-[#4D9FFD] px-1.5 py-px rounded-[3px] border-solid border border-black">
           {event.date} - {event.time}
