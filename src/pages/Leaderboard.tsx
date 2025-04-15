@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { User } from "@/types/event";
 import { Trophy, Medal, Award } from "lucide-react";
 import { PointsSystemInfo } from "@/components/points/PointsSystemInfo";
+import { UserPointsDisplay } from "@/components/points/UserPointsDisplay";
 
 const mockUsers: User[] = [
   { id: "1", name: "Jane Smith", points: 1200, avatar: "https://placehold.co/40x40/47ACDF/FFFFFF?text=JS", rank: 1, eventsAttended: ["1", "3", "5", "7"] },
@@ -18,6 +19,9 @@ const mockUsers: User[] = [
   { id: "9", name: "David Wilson", points: 510, avatar: "https://placehold.co/40x40/47ACDF/FFFFFF?text=DW", rank: 9, eventsAttended: ["3"] },
   { id: "10", name: "Linda Martinez", points: 480, avatar: "https://placehold.co/40x40/47ACDF/FFFFFF?text=LM", rank: 10, eventsAttended: ["8"] },
 ];
+
+// For demonstration, assuming current user is John Doe
+const currentUser = mockUsers[1]; // John Doe with 980 points
 
 const getRankIcon = (rank: number) => {
   switch (rank) {
@@ -36,7 +40,10 @@ const Leaderboard = () => {
   return (
     <Layout>
       <div className="px-1 py-6">
-        <h1 className="text-3xl font-bold mb-6">Leaderboard</h1>
+        <div className="flex justify-between items-start mb-6">
+          <h1 className="text-3xl font-bold">Leaderboard</h1>
+          <UserPointsDisplay points={currentUser.points} />
+        </div>
         
         <PointsSystemInfo />
         
