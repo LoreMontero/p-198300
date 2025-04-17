@@ -71,36 +71,45 @@ const MyEvents = () => {
           {activeTab === "upcoming" && mockEvents.map((event, index) => (
             <div 
               key={event.id}
-              className="relative pl-8 pb-8 last:pb-0 border-l-2 border-[#FF4D9F] last:border-transparent"
+              className="relative pl-8 md:pl-32 pb-8 last:pb-0 border-l-2 border-[#FF4D9F] last:border-transparent"
             >
+              {/* Date on the side - desktop */}
+              <div className="hidden md:block absolute left-[-100px] top-0">
+                <div className="text-sm text-gray-500 font-medium">{event.date.split(" ")[0]}</div>
+                <div className="text-3xl font-bold text-gray-800">{event.date.split(" ")[1]}</div>
+              </div>
+
               {/* Timeline dot */}
               <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#FF4D9F] border-2 border-black" />
               
               {/* Event card */}
               <div className="bg-white rounded-[10px] border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] transition-all duration-200 overflow-hidden transform hover:-translate-y-1">
                 <div className="md:flex">
-                  <div className="w-full md:w-[200px] h-[120px] md:h-full">
+                  {/* Mobile view: smaller image */}
+                  <div className="w-full md:w-[200px] h-[100px] md:h-[120px]">
                     <img
                       src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover border-b-2 md:border-b-0 md:border-r-2 border-black"
                     />
                   </div>
-                  <div className="p-4 flex-1">
-                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Calendar className="h-4 w-4" />
-                        <span>{event.date}</span>
-                        <Clock className="h-4 w-4 ml-2" />
+                  <div className="p-3 md:p-4 flex-1">
+                    {/* Date display for mobile */}
+                    <div className="md:hidden text-sm text-gray-500 mb-2">
+                      {event.date}
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold mb-2">{event.title}</h3>
+                    <div className="space-y-1.5 md:space-y-2">
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                        <Clock className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         <span>{event.time}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <MapPin className="h-4 w-4" />
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                        <MapPin className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         <span>{event.location}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Users className="h-4 w-4" />
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                        <Users className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         <span>{event.attendees} attending</span>
                       </div>
                     </div>
