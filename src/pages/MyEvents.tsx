@@ -38,8 +38,8 @@ const MyEvents = () => {
 
   return (
     <Layout>
-      <div className="px-4 py-6 max-w-4xl mx-auto">
-        <div className="mb-8">
+      <div className="px-4 py-6 max-w-3xl mx-auto">
+        <div className="mb-6">
           <h1 className="text-3xl font-bold mb-6">My Events</h1>
           <div className="flex gap-2">
             <Button
@@ -67,35 +67,32 @@ const MyEvents = () => {
           </div>
         </div>
 
-        <div className="space-y-8">
-          {activeTab === "upcoming" && mockEvents.map((event, index) => {
-            const isEven = index % 2 === 0;
-            const bgColor = isEven ? "bg-[#F2FCE2]" : "bg-[#E5DEFF]";
-            
-            return (
-              <div 
-                key={event.id}
-                className="relative pl-24 md:pl-32"
-              >
-                {/* Date column */}
-                <div className="absolute left-0 top-0 text-center w-20 md:w-24">
-                  <div className="text-gray-500 font-medium">{event.date.split(" ")[0].toUpperCase()}</div>
-                  <div className="text-4xl font-bold text-gray-800">{event.date.split(" ")[1]}</div>
-                </div>
-                
-                {/* Timeline line and dot */}
-                <div className="absolute left-[88px] md:left-[104px] top-0 h-full">
-                  <div className="absolute top-4 -left-[5px] w-[10px] h-[10px] rounded-full bg-[#FF4D9F] border-2 border-black" />
-                  <div className="absolute top-4 left-0 h-[calc(100%+2rem)] w-[1px] bg-[#FF4D9F]" />
-                </div>
-
-                {/* Event card */}
-                <div className={`rounded-[10px] border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] transition-all duration-200 overflow-hidden transform hover:-translate-y-1 ${bgColor}`}>
-                  <div className="p-4">
-                    <h3 className="text-xl font-bold mb-3">{event.title}</h3>
+        <div className="space-y-6">
+          {activeTab === "upcoming" && mockEvents.map((event, index) => (
+            <div 
+              key={event.id}
+              className="relative pl-8 pb-8 last:pb-0 border-l-2 border-[#FF4D9F] last:border-transparent"
+            >
+              {/* Timeline dot */}
+              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#FF4D9F] border-2 border-black" />
+              
+              {/* Event card */}
+              <div className="bg-white rounded-[10px] border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] transition-all duration-200 overflow-hidden transform hover:-translate-y-1">
+                <div className="md:flex">
+                  <div className="w-full md:w-[200px] h-[120px] md:h-full">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover border-b-2 md:border-b-0 md:border-r-2 border-black"
+                    />
+                  </div>
+                  <div className="p-4 flex-1">
+                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Clock className="h-4 w-4" />
+                        <Calendar className="h-4 w-4" />
+                        <span>{event.date}</span>
+                        <Clock className="h-4 w-4 ml-2" />
                         <span>{event.time}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -110,8 +107,8 @@ const MyEvents = () => {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
 
           {activeTab === "upcoming" && mockEvents.length === 0 && (
             <div className="text-center py-12 text-gray-500">
@@ -131,4 +128,3 @@ const MyEvents = () => {
 };
 
 export default MyEvents;
-
