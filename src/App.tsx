@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,7 @@ import Index from "./pages/Index";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
+import MyEvents from "./pages/MyEvents";
 
 const queryClient = new QueryClient();
 
@@ -20,8 +20,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/events" element={<Index />} />
+          <Route path="/my-events" element={<MyEvents />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
