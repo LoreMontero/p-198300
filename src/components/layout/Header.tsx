@@ -39,12 +39,11 @@ export const Header: React.FC = () => {
           >
             Discover
           </Link>
-          <Link 
-            to="/my-events" 
+          <button 
             className="text-lg font-medium hover:text-[#FF4D9F] transition-colors w-full text-center py-3 border-b border-gray-200"
           >
-            My Events
-          </Link>
+            Following
+          </button>
           <Link 
             to="/leaderboard" 
             className="text-lg font-medium hover:text-[#FF4D9F] transition-colors w-full text-center py-3 border-b border-gray-200"
@@ -93,7 +92,7 @@ export const Header: React.FC = () => {
                 <Link to="/events" className="text-base hover:text-[#FF4D9F] transition-colors">Discover</Link>
               </li>
               <li>
-                <Link to="/my-events" className="text-base hover:text-[#FF4D9F] transition-colors">My Events</Link>
+                <button className="text-base hover:text-[#FF4D9F] transition-colors">Following</button>
               </li>
               <li>
                 <Link to="/leaderboard" className="text-base hover:text-[#FF4D9F] transition-colors">Leaderboard</Link>

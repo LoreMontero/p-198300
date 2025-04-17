@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Header } from "./Header";
+import { Sidebar } from "./Sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LayoutProps {
@@ -8,10 +9,13 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const isMobile = useIsMobile();
+  
   return (
     <div className="min-h-screen bg-[#FFFAFD]">
       <Header />
-      <main className="p-3 md:p-5 transition-all duration-300">
+      {!isMobile && <Sidebar />}
+      <main className={`${isMobile ? 'ml-0 p-3' : 'ml-[298px] p-5'} transition-all duration-300`}>
         {children}
       </main>
     </div>
