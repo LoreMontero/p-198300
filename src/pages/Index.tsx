@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { CategoryFilter } from "@/components/events/CategoryFilter";
 import { EventGrid } from "@/components/events/EventGrid";
+import { FeaturedClubsSection } from "@/components/events/FeaturedClubsSection";
+import { UpcomingEventsSection } from "@/components/events/UpcomingEventsSection";
 import { Category, Event } from "@/types/event";
+import { toast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const categories: Category[] = [
   { id: "all", name: "All", active: true },
@@ -120,9 +124,47 @@ const mockEvents: Event[] = [
   },
 ];
 
+const featuredClubs = [
+  {
+    id: "club1",
+    name: "AI Pioneers",
+    description: "Exploring artificial intelligence frontiers",
+    members: 234,
+    logo: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=200&h=200",
+    category: "programming",
+  },
+  {
+    id: "club2",
+    name: "HealthTech",
+    description: "Innovation in healthcare technology",
+    members: 156,
+    logo: "https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&w=200&h=200",
+    category: "health",
+  },
+  {
+    id: "club3",
+    name: "Creative Minds",
+    description: "For artists and creative thinkers",
+    members: 312,
+    logo: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=200&h=200",
+    category: "entertainment",
+  },
+  {
+    id: "club4",
+    name: "Tech Meetups",
+    description: "Regular technology networking events",
+    members: 189,
+    logo: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=200&h=200",
+    category: "events",
+  },
+];
+
+const upcomingEvents = mockEvents.filter(event => event.status === "open").slice(0, 3);
+
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredEvents, setFilteredEvents] = useState<Event[]>(mockEvents);
+  const isMobile = useIsMobile();
 
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category.id);
@@ -134,16 +176,53 @@ const Index = () => {
     }
   };
 
+  const handleJoinEvent = (eventId: string) => {
+    toast({
+      title: "Joined event!",
+      description: "You've successfully joined this event.",
+    });
+  };
+
   return (
     <Layout>
-      <CategoryFilter
-        categories={categories.map((cat) => ({
-          ...cat,
-          active: cat.id === selectedCategory,
-        }))}
-        onSelect={handleCategorySelect}
-      />
-      <EventGrid events={filteredEvents} />
+      <div className="space-y-8">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-4xl font-black tracking-tight">
+            <span className="bg-[#FF4D9F] text-white px-2 py-1 rotate-1 inline-block transform">
+              DISCOVER
+            </span> EVENTS
+          </h1>
+          <p className="text-gray-600 max-w-xl">
+            Find the best tech events and communities in your area
+          </p>
+        </div>
+        
+        {/* Featured Clubs Section */}
+        <FeaturedClubsSection clubs={featuredClubs} />
+        
+        {/* Upcoming Events Section */}
+        <UpcomingEventsSection events={upcomingEvents} onJoinEvent={handleJoinEvent} />
+        
+        {/* All Events Section */}
+        <div className="pt-4">
+          <div className="flex justify-between items-end mb-4">
+            <h2 className="text-2xl font-bold">Browse All Events</h2>
+            <button className="text-[#FF4D9F] text-sm font-medium">View all</button>
+          </div>
+          
+          <CategoryFilter
+            categories={categories.map((cat) => ({
+              ...cat,
+              active: cat.id === selectedCategory,
+            }))}
+            onSelect={handleCategorySelect}
+          />
+          
+          <div className="mt-6">
+            <EventGrid events={filteredEvents} onJoinEvent={handleJoinEvent} />
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

@@ -28,3 +28,11 @@ export interface User {
   eventsAttended?: string[]; // IDs of events the user has attended
 }
 
+export interface Club {
+  id: string;
+  name: string;
+  description: string;
+  members: number;
+  logo: string;
+  category: string;
+}
