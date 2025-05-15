@@ -21,7 +21,7 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold flex items-center">
           <span className="bg-[#FFDE59] text-black px-2 py-1 -rotate-1 inline-block transform mr-2">
-            Upcoming
+            Recommended
           </span> 
           Events
         </h2>
