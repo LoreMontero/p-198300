@@ -103,13 +103,22 @@ export default {
 					'50%': {
 						transform: 'translateY(-15px)'
 					}
+				},
+				'bounce-x': {
+					'0%, 100%': {
+						transform: 'translateX(0)'
+					},
+					'50%': {
+						transform: 'translateX(10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.8s ease-out',
-				'bounce': 'bounce 3s ease-in-out infinite'
+				'bounce': 'bounce 3s ease-in-out infinite',
+				'bounce-x': 'bounce-x 1s ease-in-out infinite'
 			},
 			perspective: {
 				'1000': '1000px',
