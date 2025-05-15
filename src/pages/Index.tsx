@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { CategoryFilter } from "@/components/events/CategoryFilter";
 import { EventGrid } from "@/components/events/EventGrid";
 import { FeaturedClubsSection } from "@/components/events/FeaturedClubsSection";
 import { UpcomingEventsSection } from "@/components/events/UpcomingEventsSection";
+import { ClubCategoriesSection } from "@/components/clubs/ClubCategoriesSection";
 import { Category, Event } from "@/types/event";
 import { toast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -15,6 +15,58 @@ const categories: Category[] = [
   { id: "health", name: "Health" },
   { id: "entertainment", name: "Entertainment" },
   { id: "events", name: "Events" },
+];
+
+// Mock club categories data
+const clubCategories = [
+  {
+    id: "tech",
+    name: "Technology",
+    description: "Clubs focused on software, AI, and emerging technologies",
+    iconColor: "#4D9FFD",
+    backgroundColor: "#E5DEFF",
+    count: 15
+  },
+  {
+    id: "health",
+    name: "Health & Wellness",
+    description: "Fitness, nutrition, and mental health focused groups",
+    iconColor: "#33C3F0",
+    backgroundColor: "#D3E4FD",
+    count: 8
+  },
+  {
+    id: "creative",
+    name: "Creative Arts",
+    description: "Music, design, photography, and other creative pursuits",
+    iconColor: "#FF4D9F",
+    backgroundColor: "#FFDEE2",
+    count: 12
+  },
+  {
+    id: "business",
+    name: "Business",
+    description: "Entrepreneurship, finance, and professional development",
+    iconColor: "#F97316",
+    backgroundColor: "#FEC6A1",
+    count: 10
+  },
+  {
+    id: "social",
+    name: "Social Impact",
+    description: "Community service and volunteer organizations",
+    iconColor: "#7E69AB",
+    backgroundColor: "#F1F0FB",
+    count: 6
+  },
+  {
+    id: "academic",
+    name: "Academic",
+    description: "Study groups and academic interest organizations",
+    iconColor: "#D946EF",
+    backgroundColor: "#E5DEFF",
+    count: 9
+  }
 ];
 
 const mockEvents: Event[] = [
@@ -199,6 +251,9 @@ const Index = () => {
         
         {/* Featured Clubs Section */}
         <FeaturedClubsSection clubs={featuredClubs} />
+        
+        {/* Club Categories Section */}
+        <ClubCategoriesSection categories={clubCategories} />
         
         {/* Upcoming Events Section */}
         <UpcomingEventsSection events={upcomingEvents} onJoinEvent={handleJoinEvent} />
